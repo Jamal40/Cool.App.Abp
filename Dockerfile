@@ -18,9 +18,7 @@ RUN dotnet restore "./src/Cool.App.HttpApi.Host/./Cool.App.HttpApi.Host.csproj"
 COPY . .
 
 # Added commands to create .dotnet folder and set permissions
-RUN mkdir /.dotnet && \
-    chgrp -R 0 /.dotnet && \
-    chmod -R g=u /.dotnet
+
 
 WORKDIR "/src/src/Cool.App.HttpApi.Host"
 RUN dotnet build "./Cool.App.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/build
@@ -33,5 +31,8 @@ FROM base AS final
 EXPOSE 8082
 ENV ASPNETCORE_URLS=http://*:8082
 WORKDIR /app
+RUN mkdir /.dotnet
+RUN chgrp -R 0 /.dotnet && \
+    chmod -R g=u /.dotnet 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Cool.App.HttpApi.Host.dll"]
