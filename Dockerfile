@@ -30,8 +30,8 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Cool.App.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
-EXPOSE 8081
-ENV ASPNETCORE_URLS=http://*:8081
+EXPOSE 8082
+ENV ASPNETCORE_URLS=http://*:8082
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Cool.App.HttpApi.Host.dll"]
