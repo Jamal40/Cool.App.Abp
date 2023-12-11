@@ -16,6 +16,12 @@ COPY ["src/Cool.App.EntityFrameworkCore/Cool.App.EntityFrameworkCore.csproj", "s
 COPY ["src/Cool.App.HttpApi/Cool.App.HttpApi.csproj", "src/Cool.App.HttpApi/"]
 RUN dotnet restore "./src/Cool.App.HttpApi.Host/./Cool.App.HttpApi.Host.csproj"
 COPY . .
+
+# Added commands to create .dotnet folder and set permissions
+RUN mkdir /.dotnet && \
+    chgrp -R 0 /.dotnet && \
+    chmod -R g=u /.dotnet
+
 WORKDIR "/src/src/Cool.App.HttpApi.Host"
 RUN dotnet build "./Cool.App.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
