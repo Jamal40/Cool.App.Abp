@@ -2,8 +2,6 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
-EXPOSE 80
-EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
 ARG BUILD_CONFIGURATION=Release
@@ -26,6 +24,8 @@ ARG BUILD_CONFIGURATION=Release
 RUN dotnet publish "./Cool.App.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
+EXPOSE 8081
+ENV ASPNETCORE_URLS=http://*:8081
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Cool.App.HttpApi.Host.dll"]
