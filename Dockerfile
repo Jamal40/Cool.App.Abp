@@ -29,6 +29,10 @@ RUN dotnet publish "./Cool.App.HttpApi.Host.csproj" -c $BUILD_CONFIGURATION -o /
 
 FROM base AS final
 EXPOSE 8082
-
+ENV ASPNETCORE_URLS=http://*:8082
+WORKDIR /app
+RUN mkdir /.dotnet
+RUN chgrp -R 0 /.dotnet && \
+    chmod -R g=u /.dotnet 
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Cool.App.HttpApi.Host.dll"]
