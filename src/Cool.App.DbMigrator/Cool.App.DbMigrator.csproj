@@ -31,7 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Autofac" Version="7.4.3" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="7.4.4" />
     <ProjectReference Include="..\Cool.App.Application.Contracts\Cool.App.Application.Contracts.csproj" />
     <ProjectReference Include="..\Cool.App.EntityFrameworkCore\Cool.App.EntityFrameworkCore.csproj" />
   </ItemGroup>
