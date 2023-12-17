@@ -12,6 +12,7 @@ public class HomeController : AbpController
 
     public ActionResult Test()
     {
-        return Ok(new { Message = "Works Fine" });
+        return BadRequest();
+        return Ok(new { Message = "Works Fine", Id = 10 });
     }
 }
