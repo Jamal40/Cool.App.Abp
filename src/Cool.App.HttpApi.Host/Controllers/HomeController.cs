@@ -9,4 +9,9 @@ public class HomeController : AbpController
     {
         return Redirect("~/swagger");
     }
+
+    public ActionResult Test()
+    {
+        return Ok(new { Message = "Works Fine" });
+    }
 }
