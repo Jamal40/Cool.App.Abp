@@ -72,6 +72,6 @@ public class AppDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        builder.HasDefaultSchema("CoolApp");
+        //builder.HasDefaultSchema("CoolApp");
     }
 }
