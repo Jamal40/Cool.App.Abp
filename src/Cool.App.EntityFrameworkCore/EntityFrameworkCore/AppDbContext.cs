@@ -63,8 +63,6 @@ public class AppDbContext :
     {
         base.OnModelCreating(builder);
 
-        /* Include modules to your migration db context */
-
         builder.ConfigurePermissionManagement();
         builder.ConfigureSettingManagement();
         builder.ConfigureBackgroundJobs();
@@ -74,13 +72,6 @@ public class AppDbContext :
         builder.ConfigureFeatureManagement();
         builder.ConfigureTenantManagement();
 
-        /* Configure your own tables/entities inside here */
-
-        //builder.Entity<YourEntity>(b =>
-        //{
-        //    b.ToTable(AppConsts.DbTablePrefix + "YourEntities", AppConsts.DbSchema);
-        //    b.ConfigureByConvention(); //auto configure for the base class props
-        //    //...
-        //});
+        builder.HasDefaultSchema("CoolApp");
     }
 }
