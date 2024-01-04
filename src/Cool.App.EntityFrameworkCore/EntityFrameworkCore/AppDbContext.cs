@@ -40,7 +40,7 @@ public class AppDbContext :
      */
 
     //Identity
-    public DbSet<LocalizationItem> LocalizationItems { get; set; }
+    public DbSet<TranslationInfo> LocalizationItems { get; set; }
     public DbSet<IdentityUser> Users { get; set; }
     public DbSet<IdentityRole> Roles { get; set; }
     public DbSet<IdentityClaimType> ClaimTypes { get; set; }

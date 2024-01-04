@@ -1,5 +1,7 @@
 ﻿using Cool.App.Dtos;
 using Microsoft.Extensions.Localization;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp;
 using Volo.Abp.Caching;
@@ -29,15 +31,8 @@ public class TestService : AppAppService
 
     public async Task<CoolCachItem?> GetCahceItem(string item)
     {
-        var t = _localizer["Cool.App:1100"];
-        //throw new UserFriendlyException(t);
-        throw new BusinessException("Cool.App:1100");
-        //{
-        //    Data =
-        //    {
-        //        { "0", "1500"}
-        //    }
-        //};
+        throw new UserFriendlyException(_localizer["CODE_3", Guid.NewGuid().ToString()]);
+
         var gottenItem = await _cache.GetAsync(item);
         return gottenItem;
     }
